@@ -129,7 +129,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomController.cs" />
     <Compile Include="RandomPush.cs" />
   </ItemGroup>
   <ItemGroup>
