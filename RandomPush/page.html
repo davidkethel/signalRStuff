@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Push Page</title>
+
+    <script src="Scripts/jquery-1.6.4.min.js"></script>
+    <script src="Scripts/jquery.signalR-1.1.3.min.js"></script>
+    <script src="/signalr/hubs"></script>
+</head>
+    <body>
+         <input type="text" id="Text1" />
+        <input type="button" id="sendMessage" value="send" />
+        <ul id="message"></ul>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+
+                var random = $.connection.randomPush;
+
+                random.client.send = function (mes) {
+
+                    var encondedMsg = $('<div />').text(mes).html();
+                    $("#message").append('<li>' + encondedMsg + '</li>');
+
+                };
+                
+
+                //Start the connection.
+                $.connection.hub.start().done(function () {
+                    $("#sendMessage").click(function () {
+
+                        // Call the send message on the hub
+                        random.server.push();
+
+                        // Clear text box and reset focus for nex commet.
+                        $("#message").val("").focus();
+                    });
+                });
+
+
+            });
+        
+        </script>
+
+    </body>
+</html>
