@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Microsoft.AspNet.SignalR;
 
 namespace simpleExample
 {
     public class ChatHub : Hub
     {
-        public void Hello()
+        public void Send(String name, string message)
         {
-            Clients.All.hello();
+            // call the broadcastMessage Method to Update Clients
+            Clients.All.broadcastMessage(name, message);
         }
     }
 }
