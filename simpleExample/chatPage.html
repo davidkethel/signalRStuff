@@ -33,10 +33,10 @@
 
         $(function() {
 
-
+            
             //Declare a proxy to referecene the hub.
             var chat = $.connection.chatHub;
-
+            
             // Create a function the the hub can call to broadcast messges.
             chat.client.broadcastMessage = function(name, message) {
 
