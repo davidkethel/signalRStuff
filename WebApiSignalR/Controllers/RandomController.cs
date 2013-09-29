@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace WebApiSignalR.Controllers
 {
-    public class RandomController : ApiController
+    public class RandomController :ApiController
     {
         // POST api/Random
         public void Post()
