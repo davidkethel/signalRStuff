@@ -1,4 +1,64 @@
-﻿<div id="body">
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Web Api and Signal R</title>
+    <link href="Content/Site.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.8.2.min.js"></script>
+    
+    <script src="Scripts/jquery.signalR-1.1.3.min.js"></script>
+    <script type="text/javascript" src="signalr/hubs"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            $("#start").on("click", function () {
+                $.ajax({
+                    url: "api/Random",
+                    type: "POST"
+                });
+            });
+            
+            $("#stop").on("click", function () {
+                $.ajax({
+                    url: "api/Random",
+                    type: "DELETE"
+                });
+            });
+
+        });
+
+
+        $(function () {
+
+            var hub = $.connection.randomHub;
+
+            hub.client.push = function (item) {
+                var i = 0;
+            };
+
+            $.connection.hub.start();
+        });
+
+
+
+
+
+</script>
+
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">
+                    <a href="~/">Web API and SignalR</a></p>
+            </div>
+            
+        </div>
+    </header>
+    
+    <div id="body">
     <section class="content-wrapper main-content clear-fix">
         <input type="button" id="start" value="Start Random Pushes" />
         <input type="button" id="stop" value="Stop Random Pushes" />
@@ -26,27 +86,5 @@
         </ol>
     </section>
 </div>
-
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-
-        $("#start").on("click", function () {
-            $.ajax({
-                url: "api/Random",
-                type: "POST"
-            });
-        });
-
-
-        $("#stop").on("click", function () {
-            $.ajax({
-                url: "api/Random",
-                type: "DELETE"
-            });
-        });
-
-    });
-</script>
+</body>
+</html>
