@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using  WebApiSignalR;
-
-namespace WebApiSignalR.Controllers
+﻿namespace WebApiSignalR.Controllers
 {
     public class RandomController : APIControllerWithHub<RandomHub>
     {
@@ -15,9 +7,7 @@ namespace WebApiSignalR.Controllers
         {
             var i = 0;
 
-           Hub.Clients.All.push("Hello Push");
-
-
+            Hub.Clients.All.push("Hello Push");
         }
 
         // POST api/Delete
