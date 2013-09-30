@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title> Web Api and Signal R</title>
+    <title>Web Api and Signal R</title>
     <link href="Content/Site.css" rel="stylesheet" />
     <script src="Scripts/jquery-1.8.2.min.js"></script>
-    
+
     <script src="Scripts/jquery.signalR-1.1.3.min.js"></script>
     <script type="text/javascript" src="signalr/hubs"></script>
     <script type="text/javascript">
@@ -18,7 +18,7 @@
                     type: "POST"
                 });
             });
-            
+
             $("#stop").on("click", function () {
                 $.ajax({
                     url: "api/Random",
@@ -34,7 +34,10 @@
             var hub = $.connection.randomHub;
 
             hub.client.push = function (item) {
-                var i = 0;
+
+                var encondedMsg = $('<div />').text(item).html();
+                $(".round").append('<li>' + encondedMsg + '</li>');
+
             };
 
             $.connection.hub.start();
@@ -44,7 +47,7 @@
 
 
 
-</script>
+    </script>
 
 </head>
 <body>
@@ -52,39 +55,21 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p class="site-title">
-                    <a href="~/">Web API and SignalR</a></p>
+                    <a href="~/">Web API and SignalR</a>
+                </p>
             </div>
-            
+
         </div>
     </header>
-    
-    <div id="body">
-    <section class="content-wrapper main-content clear-fix">
-        <input type="button" id="start" value="Start Random Pushes" />
-        <input type="button" id="stop" value="Stop Random Pushes" />
-        <h3>We suggest the following steps:</h3>
-        <ol class="round">
-            <li class="one">
-                <h5>Getting Started</h5>
-                ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-                a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-                is an ideal platform for building RESTful applications on the .NET Framework.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245160">Learn more…</a>
-            </li>
 
-            <li class="two">
-                <h5>Add NuGet packages and jump-start your coding</h5>
-                NuGet makes it easy to install and update free libraries and tools.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245161">Learn more…</a>
-            </li>
-            <li class="three">
-                <h5>Find Web Hosting</h5>
-                You can easily find a web hosting company that offers the right mix of features
-                and price for your applications.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245164">Learn more…</a>
-            </li>
-        </ol>
-    </section>
-</div>
+    <div id="body">
+        <section class="content-wrapper main-content clear-fix">
+            <input type="button" id="start" value="Start Random Pushes" />
+            <input type="button" id="stop" value="Stop Random Pushes" />
+            <h3>We suggest the following steps:</h3>
+            <ol class="round">
+            </ol>
+        </section>
+    </div>
 </body>
 </html>
